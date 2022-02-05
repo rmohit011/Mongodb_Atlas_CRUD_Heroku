@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Search Page</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h1 style="text-align: center">Database CRUD Operations</h1>
+
+    <div class="form">
+        <form action="/find/key" method="POST">
+            <p> </p>
+            <p>Search in DB by key:</p>
+            <input type="text" name="collection" id="collection" placeholder="collection" step="any">
+            <input type="text" name="key" id="key" placeholder="key" step="any">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div class="form">
+        <form action="/find/query" method="POST">
+            <p> </p>
+            <p><br>Search in DB by query:</p>
+            <input type="text" name="collection" id="collection" placeholder="collection" step="any">
+            <input type="text" name="element" id="element" placeholder="element" step="any">
+            <input type="text" name="value" id="value" placeholder="value" step="any">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div class="form">
+        <form action="/delete/key" method="POST">
+            <p><br>Delete in DB by key:</p>
+            <input type="text" name="collection" id="collection" placeholder="collection" step="any">
+            <input type="text" name="key" id="key" placeholder="key" step="any">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+    <div class="form">
+        <form action="/delete/query" method="POST">
+            <p> </p>
+            <p><br>Delete in DB by query:</p>
+            <input type="text" name="collection" id="collection" placeholder="collection" step="any">
+            <input type="text" name="element" id="element" placeholder="element" step="any">
+            <input type="text" name="value" id="value" placeholder="value" step="any">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+    <div class="form">
+        <form action="/insert/one" method="POST">
+            <p> </p>
+            <p><br>Insert one record in DB:</p>
+            <input type="text" name="collection" id="collection" placeholder="collection" step="any">
+            <input type="text" name="dic" id="dic" placeholder="data in dictionary" step="any">
+            <input type="submit" value="Insert">
+        </form>
+    </div>
+    <div class="form">
+        <form action="/insert/many" method="POST">
+            <p> </p>
+            <p><br>Insert many records in DB:</p>
+            <input type="text" name="collection" id="collection" placeholder="collection" step="any">
+            <input type="text" name="list_of_dic" id="list_of_dic" placeholder="data in list of dictionary" step="any">
+            <input type="submit" value="Insert">
+        </form>
+    </div>
+
+</div>
+{% endblock %}
