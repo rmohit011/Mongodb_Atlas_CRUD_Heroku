@@ -6,6 +6,7 @@ import flask_monitoringdashboard as dashboard
 import os
 from flask_cors import CORS, cross_origin
 import json
+import pymongo
 
 os.putenv('LANG', 'en_US.UTF-8')
 os.putenv('LC_ALL', 'en_US.UTF-8')
@@ -40,7 +41,8 @@ def find_in_db_by_key_postman():
 @app.route('/find/key', methods=['POST'])
 def find_in_db_by_key():
     if (request.method=='POST'):
-        conn = MongoClient("localhost:27017")
+        conn=pymongo.MongoClient("mongodb+srv://mohit:Uniquepiece12@cluster0.gt2dh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+       # conn = MongoClient("localhost:27017")
         print("Connection Successful")
         db = conn["csv_bunch"]
         collection=request.form['collection']
