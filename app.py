@@ -1,8 +1,18 @@
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
+from wsgiref import simple_server
+from flask import Response
+import flask_monitoringdashboard as dashboard
+import os
+from flask_cors import CORS, cross_origin
 import json
 
+os.putenv('LANG', 'en_US.UTF-8')
+os.putenv('LC_ALL', 'en_US.UTF-8')
+
 app = Flask(__name__)
+dashboard.bind(app)
+CORS(app)
 
 @app.route('/',methods=['GET'])  # route to display the home page
 def homePage():
@@ -125,7 +135,10 @@ def insert_many_in_db():
         return render_template("results.html",prediction="Record inserted in {} collection".format(collection))
 
 
-
+port = int(os.getenv("PORT", 8000))
 if __name__ == '__main__':
-    app.run()
-    #app.run(host="0.0.0.0")
+    host = '0.0.0.0'
+    # port = 5000
+    httpd = simple_server.make_server(host, port, app)
+    # print("Serving on %s %d" % (host, port))
+    httpd.serve_forever()
